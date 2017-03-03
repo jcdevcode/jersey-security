@@ -60,12 +60,44 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
 			<version>${logback.version}</version>
-		</dependency>
-	
+		</dependency>	
     </dependencies>
+    
+    <profiles>
+    	<profile>
+      		<id>env-dev</id>
+      		<activation>
+      			<activeByDefault>true</activeByDefault>
+      		</activation>
+      		<properties>
+      			<rest.username>user4test</rest.username>
+      			<rest.password>password4test</rest.password>
+      		</properties>
+    	</profile>
+    	<profile>
+      		<id>env-qa</id>      		
+      		<properties>
+      			<rest.username>ivr_qa_user</rest.username>
+      			<rest.password>1vRQ4p455</rest.password>
+      		</properties>
+    	</profile>
+    	<profile>
+      		<id>env-prod</id>      		
+      		<properties>
+      			<rest.username>ivr_conn_user</rest.username>
+      			<rest.password>1VrC0nNp455w0rD4pr0D</rest.password>
+      		</properties>
+    	</profile>
+    </profiles>
 
     <build>
-        <plugins>
+    	<resources>
+    		<resource>
+    			<directory>src/main/resources</directory>
+    			<filtering>true</filtering>
+    		</resource>
+    	</resources>
+        <plugins>        	
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
